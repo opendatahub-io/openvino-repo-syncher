@@ -23,4 +23,3 @@ git:
   dest:
     url: https://github.com/rpancham/openvino_model_server.git 
     branch: release
-    
