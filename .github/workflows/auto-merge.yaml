@@ -64,3 +64,4 @@ jobs:
           downstream_branch: "${{ matrix.mapping.dest.branch }}"
           token: ${{ secrets.SYNCHER_APP_TOKEN }}
           merge_strategy: "rebase"
+          
