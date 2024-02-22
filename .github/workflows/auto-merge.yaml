@@ -1,0 +1,66 @@
+name: Auto-Merge - Repositories
+
+on:
+  workflow_dispatch:
+    inputs:
+      repositories:
+        type: choice
+        description: select repositories
+        options:
+            - all
+            - openvino_contrib
+
+  #schedule:
+  #  - cron: '0 0 * * *'
+
+permissions:
+  packages: write
+  contents: read
+  id-token: write
+
+env:
+  SOURCE_MAP: "src/config/source_map.yaml"
+  SPAWN_LOGS: "true"
+jobs:
+
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - id: matrix
+        run: |
+          value=$(yq -o json $SOURCE_MAP)
+          value=$(echo $value | jq -r '.git' | jq -c 'map(select(.automerge == "yes"))' | sed 's/ //g' | awk NF=NF RS= OFS=)
+          if [[ "${{ github.event_name  }}" == "workflow_dispatch" ]] && [[ "${{ github.event.inputs.repositories }}" != "all" ]]
+          then
+            value=$(echo $value | jq -c 'map(select(.name == "${{ github.event.inputs.repositories }}"))' | sed 's/ //g' | awk NF=NF RS= OFS=)
+          fi
+          echo "repos=$value"
+          length=$(echo $value | jq '. | length')
+          echo "$length repo(s) will be auto-merged by this workflow"
+          if [[ $length -eq 0 ]]
+          then 
+            echo "No valid repos available for auto-merge"
+            exit 1
+          fi
+          echo "::set-output name=value::$value"
+  build:
+    needs: [ setup ]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mapping: ${{ fromJSON(needs.setup.outputs.matrix) }}
+    steps:
+      - name: GitHub Sync to Upstream Repository
+        uses: z103cb/sync-upstream-repo@v2.0.0
+        with:
+          upstream_repo_url: "${{ matrix.mapping.src.url }}"
+          upstream_branch: "${{ matrix.mapping.src.branch }}"
+          downstream_repo_url: "${{ matrix.mapping.dest.url }}"
+          downstream_branch: "${{ matrix.mapping.dest.branch }}"
+          token: ${{ secrets.SYNCHER_APP_TOKEN }}
+          merge_strategy: "rebase"

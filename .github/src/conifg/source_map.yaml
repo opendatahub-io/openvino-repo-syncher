@@ -1,0 +1,25 @@
+git:
+- name: openvino_contrib
+  automerge: 'yes'
+  src:
+    url: https://github.com/opendatahub-io/openvino_contrib.git
+    branch: master
+  dest:
+    url: https://github.com/rpancham/openvino_contrib.git
+    branch: master
+- name: openvino_model_server_main
+  automerge: 'yes'
+  src:
+    url: https://github.com/openvinotoolkit/model_server.git 
+    branch: main 
+  dest:
+    url: https://github.com/rpancham/openvino_model_server.git 
+    branch: main
+- name: openvino_model_server_release
+  automerge: 'yes'
+  src:
+    url: https://github.com/openvinotoolkit/model_server.git 
+    branch: releases/2023/3 
+  dest:
+    url: https://github.com/rpancham/openvino_model_server.git 
+    branch: release
