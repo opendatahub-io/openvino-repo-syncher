@@ -8,8 +8,12 @@ on:
         description: select repositories
         options:
             - all
-            - openvino_contrib
-
+            - openvino_master
+            - openvino_contrib_master
+            - openvino_model_server_main
+            - openvino_release
+            - openvino_contrib_release
+            - openvino_model_server_release
   #schedule:
   #  - cron: '0 0 * * *'
 
@@ -56,11 +60,12 @@ jobs:
         mapping: ${{ fromJSON(needs.setup.outputs.matrix) }}
     steps:
       - name: GitHub Sync to Upstream Repository
-        uses: z103cb/sync-upstream-repo@v2.0.0
+        uses: opendatahub-io/sync-upstream-repo@v2.0.0
         with:
+          mode: "${{ matrix.mapping.mode }}"
           upstream_repo_url: "${{ matrix.mapping.src.url }}"
           upstream_branch: "${{ matrix.mapping.src.branch }}"
           downstream_repo_url: "${{ matrix.mapping.dest.url }}"
           downstream_branch: "${{ matrix.mapping.dest.branch }}"
-          token: ${{ secrets.SYNCHER_APP_TOKEN }}
+          token: ${{ github.TOKEN }}
           merge_strategy: "rebase"
