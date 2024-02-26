@@ -6,7 +6,7 @@ This repository serves as a centralized hub for managing various OpenVINO reposi
 
 The primary purpose of this repository is to streamline the management of OpenVINO-related repositories by automating the synchronization of changes and facilitating seamless collaboration among contributors.
 
-## Actions 
+## Actions
 
 The following actions are performed within this repository:
 
@@ -19,6 +19,7 @@ The following actions are performed within this repository:
 The workflow is triggered either manually or on a schedule. It automates the process of syncing changes between upstream and downstream repositories.
 
 ## Development
+
 In this repository, we have defined an auto-merge workflow using GitHub Actions. Here's how it works:
 
 - Auto-Merge Workflow: The automerge workflow is configured in automerge.yaml. This workflow is triggered either manually or on a schedule and automates the process of syncing changes between specified repositories and branches.
