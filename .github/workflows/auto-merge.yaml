@@ -60,7 +60,7 @@ jobs:
         mapping: ${{ fromJSON(needs.setup.outputs.matrix) }}
     steps:
       - name: GitHub Sync to Upstream Repository
-        uses: opendatahub-io/sync-upstream-repo@v2.0.0
+        uses: opendatahub-io/sync-upstream-repo@v2.0.0-alpha
         with:
           mode: "${{ matrix.mapping.mode }}"
           upstream_repo_url: "${{ matrix.mapping.src.url }}"
