@@ -14,6 +14,9 @@ on:
             - openvino_release
             - openvino_contrib_release
             - openvino_model_server_release
+            - openvino_release_2023.3
+            - openvino_contrib_release_2023.3
+            - openvino_model_server_release_2023.3
   #schedule:
   #  - cron: '0 0 * * *'
 
@@ -67,5 +70,5 @@ jobs:
           upstream_branch: "${{ matrix.mapping.src.branch }}"
           downstream_repo_url: "${{ matrix.mapping.dest.url }}"
           downstream_branch: "${{ matrix.mapping.dest.branch }}"
-          token: ${{ github.TOKEN }}
+          token: ${{ secrets.OPENVINO_SYNC_ACCESS_TOKEN }}
           merge_strategy: "rebase"
