@@ -14,8 +14,11 @@ on:
             - openvino_release
             - openvino_contrib_release
             - openvino_model_server_release
-  #schedule:
-  #  - cron: '0 0 * * *'
+            - openvino_new_release
+            - openvino_contrib_new_release
+            - openvino_model_server_new_release
+  schedule:
+    - cron: '18 0 * * *'
 
 permissions:
   packages: write
@@ -67,5 +70,5 @@ jobs:
           upstream_branch: "${{ matrix.mapping.src.branch }}"
           downstream_repo_url: "${{ matrix.mapping.dest.url }}"
           downstream_branch: "${{ matrix.mapping.dest.branch }}"
-          token: ${{ github.TOKEN }}
+          token: ${{ secrets.OPENVINO_SYNC_ACCESS_TOKEN }}
           merge_strategy: "rebase"

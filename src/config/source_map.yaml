@@ -1,1 +1,83 @@
 git:
+- name: openvino_master
+  automerge: 'yes'
+  mode: 'branch-to-branch'
+  src:
+    url: https://github.com/openvinotoolkit/openvino.git
+    branch: master
+  dest:
+    url: https://github.com/opendatahub-io/openvino.git
+    branch: master
+- name: openvino_contrib_master
+  automerge: 'yes'
+  mode: 'branch-to-branch'
+  src:
+    url: https://github.com/openvinotoolkit/openvino_contrib.git
+    branch: master
+  dest:
+    url: https://github.com/opendatahub-io/openvino_contrib.git
+    branch: master
+- name: openvino_model_server_main
+  automerge: 'yes'
+  mode: 'branch-to-branch'
+  src:
+    url: https://github.com/openvinotoolkit/model_server.git 
+    branch: main 
+  dest:
+    url: https://github.com/opendatahub-io/openvino_model_server.git 
+    branch: main
+- name: openvino_release
+  automerge: 'yes'
+  mode: 'branch-to-branch'
+  src:
+    url: https://github.com/openvinotoolkit/openvino.git
+    branch: releases/2023/3
+  dest:
+    url: https://github.com/opendatahub-io/openvino.git
+    branch: release
+- name: openvino_contrib_release
+  automerge: 'yes'
+  mode: 'branch-to-branch'
+  src:
+    url: https://github.com/openvinotoolkit/openvino_contrib.git
+    branch: releases/2023/3 
+  dest:
+    url: https://github.com/opendatahub-io/openvino_contrib.git
+    branch: release
+- name: openvino_model_server_release
+  automerge: 'yes'
+  mode: 'branch-to-branch'
+  src:
+    url: https://github.com/openvinotoolkit/model_server.git 
+    branch: releases/2023/3 
+  dest:
+    url: https://github.com/opendatahub-io/openvino_model_server.git 
+    branch: release
+#Release following jobs
+- name: openvino_new_release
+  automerge: 'yes'
+  mode: 'release-following'
+  src:
+    url: https://github.com/openvinotoolkit/openvino.git
+    branch: releases/20*
+  dest:
+    url: https://github.com/opendatahub-io/openvino.git
+    branch: new_release
+- name: openvino_contrib_new_release
+  automerge: 'yes'
+  mode: 'release-following'
+  src:
+    url: https://github.com/openvinotoolkit/openvino_contrib.git
+    branch: releases/20*
+  dest:
+    url: https://github.com/opendatahub-io/openvino_contrib.git
+    branch: new_release
+- name: openvino_model_server_new_release
+  automerge: 'yes'
+  mode: 'release-following'
+  src:
+    url: https://github.com/openvinotoolkit/model_server.git 
+    branch: releases/20* 
+  dest:
+    url: https://github.com/opendatahub-io/openvino_model_server.git 
+    branch: new_release
