@@ -14,11 +14,11 @@ on:
             - openvino_release
             - openvino_contrib_release
             - openvino_model_server_release
-            - openvino_release_2023.3
-            - openvino_contrib_release_2023.3
-            - openvino_model_server_release_2023.3
-  #schedule:
-  #  - cron: '0 0 * * *'
+            - openvino_new_release
+            - openvino_contrib_new_release
+            - openvino_model_server_new_release
+  schedule:
+    - cron: '18 0 * * *'
 
 permissions:
   packages: write

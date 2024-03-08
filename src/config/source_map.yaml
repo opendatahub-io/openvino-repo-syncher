@@ -26,7 +26,7 @@ git:
   dest:
     url: https://github.com/opendatahub-io/openvino_model_server.git 
     branch: main
-- name: openvino_release_2023.3
+- name: openvino_release
   automerge: 'yes'
   mode: 'branch-to-branch'
   src:
@@ -34,8 +34,8 @@ git:
     branch: releases/2023/3
   dest:
     url: https://github.com/opendatahub-io/openvino.git
-    branch: 2023.3-release
-- name: openvino_contrib_release_2023.3
+    branch: release
+- name: openvino_contrib_release
   automerge: 'yes'
   mode: 'branch-to-branch'
   src:
@@ -43,8 +43,8 @@ git:
     branch: releases/2023/3 
   dest:
     url: https://github.com/opendatahub-io/openvino_contrib.git
-    branch: 2023.3-release
-- name: openvino_model_server_release_2023.3
+    branch: release
+- name: openvino_model_server_release
   automerge: 'yes'
   mode: 'branch-to-branch'
   src:
@@ -52,9 +52,9 @@ git:
     branch: releases/2023/3 
   dest:
     url: https://github.com/opendatahub-io/openvino_model_server.git 
-    branch: 2023.3-release
+    branch: release
 #Release following jobs
-- name: openvino_release
+- name: openvino_new_release
   automerge: 'yes'
   mode: 'release-following'
   src:
@@ -62,8 +62,8 @@ git:
     branch: releases/20*
   dest:
     url: https://github.com/opendatahub-io/openvino.git
-    branch: fast
-- name: openvino_contrib_release
+    branch: new_release
+- name: openvino_contrib_new_release
   automerge: 'yes'
   mode: 'release-following'
   src:
@@ -71,8 +71,8 @@ git:
     branch: releases/20*
   dest:
     url: https://github.com/opendatahub-io/openvino_contrib.git
-    branch: fast
-- name: openvino_model_server_release
+    branch: new_release
+- name: openvino_model_server_new_release
   automerge: 'yes'
   mode: 'release-following'
   src:
@@ -80,4 +80,4 @@ git:
     branch: releases/20* 
   dest:
     url: https://github.com/opendatahub-io/openvino_model_server.git 
-    branch: fast
+    branch: new_release
